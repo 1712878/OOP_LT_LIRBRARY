@@ -21,9 +21,39 @@
     <ClCompile Include="MyDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SachViet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SachNgoai.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhieuMuon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThuVien.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyDate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SachViet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SachNgoai.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhieuMuon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThuVien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

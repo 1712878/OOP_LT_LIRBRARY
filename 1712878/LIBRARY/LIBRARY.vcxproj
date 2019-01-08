@@ -117,9 +117,19 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyDate.cpp" />
+    <ClCompile Include="PhieuMuon.cpp" />
+    <ClCompile Include="Sach.cpp" />
+    <ClCompile Include="SachNgoai.cpp" />
+    <ClCompile Include="SachViet.cpp" />
+    <ClCompile Include="ThuVien.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyDate.h" />
+    <ClInclude Include="PhieuMuon.h" />
+    <ClInclude Include="Sach.h" />
+    <ClInclude Include="SachNgoai.h" />
+    <ClInclude Include="SachViet.h" />
+    <ClInclude Include="ThuVien.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
