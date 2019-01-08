@@ -40,6 +40,18 @@ void ThuVien::DocFile()
 	}
 	fp.close();
 
+	fp.open("..//FILE//PhieuMuon.csv", ios::in);
+	getline(fp, s);
+	DocGia a;
+	while (!fp.eof())
+	{
+		vector <string> kq;
+		getline(fp, s);
+		TachToken(kq, s);
+		a.SetDuLieu(kq);
+		dsDocGia.push_back(a);
+	}
+	fp.close();
 }
 
 void ThuVien::Xuat()
