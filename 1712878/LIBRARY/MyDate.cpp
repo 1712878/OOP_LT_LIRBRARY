@@ -7,7 +7,6 @@ MyDate::MyDate(int day, int month, int year)
 	this->year = year;
 }
 
-
 bool MyDate::CheckDay()
 {
 	if (day <1 || day>DayOfMonth(month,year) || CheckYear(year) == -1)
@@ -16,28 +15,41 @@ bool MyDate::CheckDay()
 		return true;
 }
 
+MyDate MyDate::operator=(const MyDate & Date)
+{
+	this->day = Date.day;
+	this->month = Date.month;
+	this->year = Date.year;
+	return *this;
+}
+
 bool MyDate::operator==(const MyDate & Date)
 {
 	return (day == Date.day && month == Date.month && year == Date.year);
 }
 
-MyDate MyDate::operator+ (int n)
+MyDate MyDate::operator+ (int n) const
 {	
-
-	int nDay = n  + day;
-	while (nDay > DayOfMonth(month,year))
+	MyDate temp = *this;
+	int nDay = n  + temp.day;
+	while (nDay > DayOfMonth(temp.month, temp.year))
 	{
-		nDay -= DayOfMonth(month,year);
-		if (month + 1 <= 12)
-			month++;
+		nDay -= DayOfMonth(temp.month, temp.year);
+		if (temp.month + 1 <= 12)
+			temp.month++;
 		else
 		{
-			month = 1;
-			year++;
+			temp.month = 1;
+			temp.year++;
 		}
 	}
-	day = nDay;
-	return *this;
+	temp.day = nDay;
+	return temp;
+}
+
+int MyDate::operator-(MyDate Date)
+{
+	return Distance(Date);
 }
 
 int MyDate::Distance()

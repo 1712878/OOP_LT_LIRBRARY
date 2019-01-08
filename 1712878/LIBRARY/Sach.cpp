@@ -22,15 +22,15 @@ void Sach::Nhap()
 void Sach::Xuat()
 {
 	cout << this->MaSach << "\t" << this->TenSach << "\t" << this->TacGia
-		<<"\t" << this->NhaXuatBan << "\t" << this->Gia << endl;
+		<< "\t" << this->NhaXuatBan << "\t" << this->Gia;
 }
 
-bool Sach::TimSach(string ma)
+bool Sach::TimKiem(string ma)
 {
 	return this->MaSach == ma;
 }
 
-void Sach::SuaSach(string ma)
+void Sach::Sua(string ma)
 {
 	cout << "Nhap thong tin can thay doi: ";
 	string s;

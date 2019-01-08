@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 class Sach
 {
@@ -11,10 +12,19 @@ protected:
 	float Gia;
 public:
 	Sach();
-	void Nhap();
-	void Xuat();
-	bool TimSach(string ma);
-	void SuaSach(string ma);
+	virtual void Nhap();
+	virtual void Xuat();
+	virtual void SetDuLieu(vector <string> DL)
+	{
+		int i = 0;
+		this->MaSach = DL[i++];
+		this->TenSach = DL[i++];
+		this->TacGia = DL[i++];
+		this->NhaXuatBan = DL[i++];
+		this->Gia = atoi(DL[i].c_str());
+	}
+	bool TimKiem(string ma);
+	void Sua(string ma);
 	~Sach();
 };
 

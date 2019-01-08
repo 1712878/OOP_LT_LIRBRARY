@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DocGia.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyDate.cpp" />
     <ClCompile Include="PhieuMuon.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="ThuVien.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DocGia.h" />
     <ClInclude Include="MyDate.h" />
     <ClInclude Include="PhieuMuon.h" />
     <ClInclude Include="Sach.h" />

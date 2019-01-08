@@ -6,6 +6,7 @@ class SachViet :public Sach
 {
 public:
 	SachViet();
+	void Xuat();
 	~SachViet();
 };
 

@@ -14,8 +14,10 @@ private:
 public:
 	MyDate(int day= 1, int month =1, int year = MinYear);
 	bool CheckDay();
+	MyDate operator= (const MyDate& Date);
 	bool operator == (const MyDate& Date);
-	MyDate operator+ (int nDay);
+	MyDate operator+ (int nDay) const;
+	int operator- (MyDate Date);
 	int Distance();
 	int Distance(MyDate Date);
 	string DayOfWeek();
