@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 using namespace std;
 class Sach
 {
@@ -14,6 +15,7 @@ public:
 	Sach();
 	virtual void Nhap();
 	virtual void Xuat();
+	string GetMaSach();
 	virtual void SetDuLieu(vector <string> DL)
 	{
 		int i = 0;

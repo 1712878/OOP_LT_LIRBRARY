@@ -11,7 +11,7 @@ void SachNgoai::Nhap()
 void SachNgoai::Xuat()
 {
 	Sach::Xuat();
-	cout << "\t" << this->ISBN << endl;
+	cout << setw(10) << this->ISBN << endl;
 }
 
 void SachNgoai::SetDuLieu(vector<string> DL)

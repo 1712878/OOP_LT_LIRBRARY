@@ -7,6 +7,15 @@ MyDate::MyDate(int day, int month, int year)
 	this->year = year;
 }
 
+MyDate::MyDate(string s)
+{
+	int f = s.find_first_of("/-.");
+	int l = s.find_last_of("/-.");
+	this->day = stoi(s.substr(0, f - 0));
+	this->month = stoi(s.substr(f + 1, l - f - 1));
+	this->year = stoi(s.substr(l + 1, s.size() - l));
+}
+
 bool MyDate::CheckDay()
 {
 	if (day <1 || day>DayOfMonth(month,year) || CheckYear(year) == -1)
@@ -20,6 +29,13 @@ MyDate MyDate::operator=(const MyDate & Date)
 	this->day = Date.day;
 	this->month = Date.month;
 	this->year = Date.year;
+	return *this;
+}
+
+MyDate MyDate::operator=(const string& s)
+{
+	MyDate temp(s);
+	*this = temp;
 	return *this;
 }
 

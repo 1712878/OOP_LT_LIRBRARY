@@ -8,7 +8,11 @@ int main()
 {
 	ThuVien t;
 	t.DocFile();
-	t.Xuat();
+	t.XuatDSSach();
+	//t.ThemSach();
+	//t.XuatDSSach();
+	//t.TimKiemSach();
+	t.XoaSach();
 	system("pause");
 	return 0;
 }

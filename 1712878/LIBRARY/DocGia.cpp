@@ -22,8 +22,8 @@ void DocGia::Nhap()
 
 void DocGia::Xuat()
 {
-	cout << this->CMND << "\t" << this->HoTen << "\t\t" << this->SDT
-		<< "\t" << this->NgheNghiep << "\t" << this->DiaChi << endl;
+	cout << left << setw(15) << this->CMND << setw(25) << this->HoTen << setw(20) << this->SDT
+		<< setw(20) << this->NgheNghiep << setw(10) << this->DiaChi << endl;
 }
 
 void DocGia::SetDuLieu(vector<string> DL)

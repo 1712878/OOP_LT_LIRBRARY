@@ -18,7 +18,13 @@ private:
 public:
 	ThuVien();
 	void DocFile();
-	void Xuat();
+	void XuatDSSach();
+	void XuatDSDocGia();
+	void XuatDSPhieuMuon();
+	void ThemSach();
+	void XoaSach();
+	void SuaSach();
+	void TimKiemSach();
 	~ThuVien();
 };
 int GetToKen(string & token, string s, int &startPos);

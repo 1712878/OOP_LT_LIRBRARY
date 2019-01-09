@@ -21,13 +21,18 @@ void Sach::Nhap()
 
 void Sach::Xuat()
 {
-	cout << this->MaSach << "\t" << this->TenSach << "\t" << this->TacGia
-		<< "\t" << this->NhaXuatBan << "\t" << this->Gia;
+	cout << left <<setw(10)<< this->MaSach << setw(30) << this->TenSach << setw(20) << this->TacGia
+		<< setw(20) << this->NhaXuatBan << setw(10) << this->Gia;
 }
 
-bool Sach::TimKiem(string ma)
+string Sach::GetMaSach()
 {
-	return this->MaSach == ma;
+	return this->MaSach;
+}
+
+bool Sach::TimKiem(string s)
+{
+	return (this->MaSach == s || this->TenSach == s|| this->TacGia == s|| this->NhaXuatBan == s);
 }
 
 void Sach::Sua(string ma)

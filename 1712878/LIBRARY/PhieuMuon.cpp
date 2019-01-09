@@ -6,6 +6,12 @@ PhieuMuon::PhieuMuon()
 {
 }
 
+void PhieuMuon::Xuat()
+{
+	cout << this->CMND << "\t" << this->MaSach << "\t" << this->NgayMuon
+		<< "\t" << this->NgayHetHan << "\t" << this->TinhTrang << endl;
+}
+
 void PhieuMuon::TaoPhieu()
 {
 	cout << "Nhap CMND: ";
@@ -37,7 +43,15 @@ void PhieuMuon::TraPhieu()
 	TinhTrang = true;
 }
 
-
+void PhieuMuon::SetDuLieu(vector<string> DL)
+{
+	int i = 0;
+	this->CMND = DL[i++];
+	this->MaSach = DL[i++];
+	this->NgayMuon = DL[i++];
+	this->NgayHetHan = DL[i++];
+	this->TinhTrang = stoi(DL[i++]);
+}
 
 PhieuMuon::~PhieuMuon()
 {

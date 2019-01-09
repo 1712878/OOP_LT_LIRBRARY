@@ -13,8 +13,10 @@ private:
 	int day, month, year;
 public:
 	MyDate(int day= 1, int month =1, int year = MinYear);
+	MyDate(string s);
 	bool CheckDay();
 	MyDate operator= (const MyDate& Date);
+	MyDate operator=(const string& s);
 	bool operator == (const MyDate& Date);
 	MyDate operator+ (int nDay) const;
 	int operator- (MyDate Date);

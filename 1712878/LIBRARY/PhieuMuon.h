@@ -12,9 +12,11 @@ private:
 	bool TinhTrang;
 public:
 	PhieuMuon();
+	void Xuat();
 	void TaoPhieu();
 	void XuatPhieu();
 	void TraPhieu();
+	void SetDuLieu(vector <string> DL);
 	~PhieuMuon();
 };
 
