@@ -72,6 +72,11 @@ void SachNgoai::SuaSach()
 	}
 }
 
+int SachNgoai::GetTienPhat()
+{
+	return 20000;
+}
+
 SachNgoai::SachNgoai()
 {
 }

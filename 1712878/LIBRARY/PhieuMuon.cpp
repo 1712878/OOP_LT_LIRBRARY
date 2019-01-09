@@ -12,6 +12,56 @@ void PhieuMuon::Xuat()
 		<< "\t" << this->NgayHetHan << "\t" << this->TinhTrang << endl;
 }
 
+void PhieuMuon::SetCMND(string cmnd)
+{
+	this->CMND = cmnd;
+}
+
+string PhieuMuon::GetCMND()
+{
+	return this->CMND;
+}
+
+void PhieuMuon::SetMaSach(string maSach)
+{
+	this->MaSach = maSach;
+}
+
+string PhieuMuon::GetMaSach()
+{
+	return this->MaSach;
+}
+
+void PhieuMuon::SetNgayMuon(MyDate ngayMuon)
+{
+	this->NgayMuon = ngayMuon;
+}
+
+MyDate PhieuMuon::GetNgayMuon()
+{
+	return this->NgayMuon;
+}
+
+void PhieuMuon::SetNgayHetHan(MyDate ngayHetHan)
+{
+	this->NgayHetHan = ngayHetHan;
+}
+
+MyDate PhieuMuon::GetNgayHetHan()
+{
+	return this->NgayHetHan;
+}
+
+void PhieuMuon::SetTinhTrang(bool tinhTrang)
+{
+	this->TinhTrang = tinhTrang;
+}
+
+bool PhieuMuon::GetTinhTrang()
+{
+	return this->TinhTrang;
+}
+
 void PhieuMuon::TaoPhieu()
 {
 	cout << "Nhap CMND: ";
@@ -26,20 +76,19 @@ void PhieuMuon::TaoPhieu()
 
 void PhieuMuon::XuatPhieu()
 {
-	/*DocGia a;
+	DocGia a;
 	cout << "Thong tin nguoi muon: \n";
+	a.TimKiem(CMND);
 	a.Xuat();
 	Sach b; 
 	cout << "Thong tin sach muon: \n";
-	b.Xuat();*/
+	b.Xuat();
 	cout << "Ban duoc phep muon tu ngay: " << this->NgayMuon << "(" << this->NgayMuon.DayOfWeek() << "), den ngay: "
 		<< this->NgayHetHan << "( " << this->NgayHetHan.DayOfWeek() << ")\n";
 }
 
 void PhieuMuon::TraPhieu()
 {
-	cout << "Nhap ngay tra sach: ";
-	cin >> NgayTra;
 	TinhTrang = true;
 }
 

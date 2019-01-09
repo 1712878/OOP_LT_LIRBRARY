@@ -11,6 +11,7 @@ public:
 	virtual void Xuat();
 	virtual void SetDuLieu(vector <string> DL);
 	virtual void SuaSach();
+	virtual int GetTienPhat();
 	SachNgoai();
 	~SachNgoai();
 };

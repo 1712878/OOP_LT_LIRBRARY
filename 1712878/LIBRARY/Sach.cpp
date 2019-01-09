@@ -36,6 +36,11 @@ bool Sach::TimKiem(string s)
 	return (this->MaSach == s || this->TenSach == s|| this->TacGia == s|| this->NhaXuatBan == s);
 }
 
+int Sach::GetTienPhat()
+{
+	return 10000;
+}
+
 void Sach::SuaSach()
 {
 	int choice;

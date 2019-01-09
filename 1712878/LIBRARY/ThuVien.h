@@ -12,11 +12,13 @@
 class ThuVien
 {
 private: 
+	MyDate NgayHomNay;
 	vector <Sach*> dsSach;
 	vector <DocGia> dsDocGia;
 	vector <PhieuMuon> dsPhieuMuon;
 public:
 	ThuVien();
+	void SetNgayHomNay(MyDate date);
 	void DocFile();
 	void XuatDSSach();
 	void XuatDSDocGia();
@@ -29,6 +31,11 @@ public:
 	void XoaDocGia();
 	void SuaDocGia();
 	void TimKiemDocGia();
+	DocGia* TimDocGiaBangCMND(string cmnd);
+	Sach* TimSachBangMaSach(string maSach);
+	void TaoPhieu();
+	void XuatPhieu(PhieuMuon phieuMuon);
+	void TraPhieu();
 	~ThuVien();
 };
 int GetToKen(string & token, string s, int &startPos);

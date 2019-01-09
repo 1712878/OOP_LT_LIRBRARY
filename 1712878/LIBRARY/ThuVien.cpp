@@ -4,6 +4,11 @@ ThuVien::ThuVien()
 {
 }
 
+void ThuVien::SetNgayHomNay(MyDate date)
+{
+	this->NgayHomNay = date;
+}
+
 void ThuVien::DocFile()
 {
 	fstream fp;
@@ -28,27 +33,27 @@ void ThuVien::DocFile()
 
 	fp.open("..//FILE//DocGia.csv", ios::in);
 	getline(fp, s);
-	DocGia dg;
+	DocGia docGia;
 	while (!fp.eof())
 	{
 		vector <string> kq;
 		getline(fp, s);
 		TachToken(kq, s);
-		dg.SetDuLieu(kq);
-		dsDocGia.push_back(dg);
+		docGia.SetDuLieu(kq);
+		dsDocGia.push_back(docGia);
 	}
 	fp.close();
 
 	fp.open("..//FILE//PhieuMuon.csv", ios::in);
 	getline(fp, s);
-	PhieuMuon pm;
+	PhieuMuon phieuMuon;
 	while (!fp.eof())
 	{
 		vector <string> kq;
 		getline(fp, s);
 		TachToken(kq, s);
-		pm.SetDuLieu(kq);
-		dsPhieuMuon.push_back(pm);
+		phieuMuon.SetDuLieu(kq);
+		dsPhieuMuon.push_back(phieuMuon);
 	}
 	fp.close();
 }
@@ -71,6 +76,8 @@ void ThuVien::XuatDSDocGia()
 
 void ThuVien::XuatDSPhieuMuon()
 {
+	for (auto a : dsPhieuMuon)
+		a.Xuat();
 }
 
 //1. Sach
@@ -266,6 +273,122 @@ void ThuVien::TimKiemDocGia()
 	}
 	if (flag == 0)
 		cout << "Khong tim thay noi dung ban nhap!\n";
+}
+
+DocGia* ThuVien::TimDocGiaBangCMND(string cmnd)
+{
+	DocGia* docGia = NULL;
+	int size = dsDocGia.size();
+	for (int i=0; i< size; i++)
+	{
+		if (dsDocGia[i].GetCMND() == cmnd)
+		{
+			docGia = &dsDocGia[i];
+			break;
+		}
+	}
+	return  docGia;
+}
+
+Sach* ThuVien::TimSachBangMaSach(string maSach)
+{
+	Sach* sach = NULL;
+	int size = dsSach.size();
+	for (int i = 0; i < size; i++)
+	{
+		if (dsSach[i]->GetMaSach() == maSach)
+		{
+			sach = dsSach[i];
+			break;
+		}
+	}
+	return  sach;
+}
+
+void ThuVien::TaoPhieu()
+{
+	PhieuMuon phieuMuon;
+	string s;
+	DocGia* docGia;
+	Sach* sach;
+	do
+	{
+		cout << "Nhap CMND: ";
+		cin >> s;
+		docGia = TimDocGiaBangCMND(s);
+		if (docGia != NULL)
+			break;
+		else
+			cout << "CMND chua dang ki doc gia, vui long nhap lai.";
+	} while (1);
+	phieuMuon.SetCMND(s);
+
+	do
+	{
+		cout << "Nhap Ma Sach: ";
+		cin >> s;
+		sach = TimSachBangMaSach(s);
+		if (sach != NULL)
+			break;
+		else
+			cout << "Ma Sach khong ton tai, vui long nhap lai.";
+	} while (1);
+	phieuMuon.SetMaSach(s);
+	phieuMuon.SetNgayMuon(this->NgayHomNay);
+	phieuMuon.SetNgayHetHan(this->NgayHomNay + 7);
+	phieuMuon.SetTinhTrang(false);
+	dsPhieuMuon.push_back(phieuMuon);
+	cout << "\nTao phieu muon thanh cong!\n";
+	XuatPhieu(phieuMuon);
+}
+
+void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
+{
+	DocGia* docGia = TimDocGiaBangCMND(phieuMuon.GetCMND());
+	Sach* sach = TimSachBangMaSach(phieuMuon.GetMaSach());
+	cout << "-----------PHIEU MUON SACH--------------\n";
+	cout << "Thong tin Doc Gia:\n";
+	docGia->Xuat();
+	cout << "Thong tin sach:\n";
+	sach->Xuat();
+	cout << "Ngay muon:    " << phieuMuon.GetNgayMuon() << endl;
+	cout << "Ngay het han: " << phieuMuon.GetNgayHetHan() << endl;
+	cout << "Tinh trang:   ";
+	if (phieuMuon.GetTinhTrang() == false)
+	{
+		cout << "Dang muon\n";
+	}
+	else
+	{
+		cout << "Da tra ngay " << this->NgayHomNay << endl;
+		int nDay = this->NgayHomNay - phieuMuon.GetNgayHetHan();
+		cout << "Ghi chu: ";
+		if (nDay > 0)
+		{
+			int TienPhat = sach->GetTienPhat();
+			cout << "so tien phat " << nDay << "(ngay) * " << TienPhat << "/ngay = " << nDay * TienPhat << endl;
+
+		}
+		else
+			cout << "tra dung han\n";
+	}
+}
+
+void ThuVien::TraPhieu()
+{
+	string s;
+	cout << "Nhap CMND: ";
+	getline(cin >> ws, s);
+	PhieuMuon phieuMuon;
+	for (int i = 0; i < dsPhieuMuon.size(); i++)
+	{
+		if (dsPhieuMuon[i].GetCMND() == s)
+		{
+			phieuMuon = dsPhieuMuon[i];
+			phieuMuon.SetTinhTrang(true);
+			XuatPhieu(phieuMuon);
+		}
+	}
 }
 
 ThuVien::~ThuVien()

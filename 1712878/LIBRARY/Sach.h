@@ -27,6 +27,7 @@ public:
 	string GetMaSach();
 	virtual void SuaSach();
 	bool TimKiem(string s);
+	virtual int GetTienPhat();
 	~Sach();
 };
 

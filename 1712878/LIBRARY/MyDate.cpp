@@ -83,7 +83,7 @@ int MyDate::Distance()
 int MyDate::Distance(MyDate Date)
 {
 	int nDay = Distance() - Date.Distance();
-	return abs(nDay);
+	return nDay;
 }
 
 string MyDate::DayOfWeek()

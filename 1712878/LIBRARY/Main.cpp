@@ -8,7 +8,11 @@ int main()
 {
 	ThuVien t;
 	t.DocFile();
-	//t.XuatDSSach();
+	MyDate date;
+	cout << "Nhap ngay hom nay(dd/mm/yyyy): ";
+	cin >> date;
+	t.SetNgayHomNay(date);
+	t.XuatDSSach();
 	//t.ThemSach();
 	//t.XoaSach();
 	//t.SuaSach();
@@ -19,8 +23,11 @@ int main()
 	//t.ThemDocGia();
 	//t.XoaDocGia();
 	//t.SuaDocGia();
-	t.TimKiemDocGia();
+	//t.TimKiemDocGia();
 	//t.XuatDSDocGia();
+	t.XuatDSPhieuMuon();
+	t.TraPhieu();
+	//t.XuatDSPhieuMuon();
 	system("pause");
 	return 0;
 }

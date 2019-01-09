@@ -8,11 +8,21 @@ class PhieuMuon
 {
 private:
 	string CMND, MaSach;
-	MyDate NgayMuon, NgayHetHan, NgayTra;
+	MyDate NgayMuon, NgayHetHan;
 	bool TinhTrang;
 public:
 	PhieuMuon();
 	void Xuat();
+	void SetCMND(string cmnd);
+	string GetCMND();
+	void SetMaSach(string maSach);
+	string GetMaSach();
+	void SetNgayMuon(MyDate ngayMuon);
+	MyDate GetNgayMuon();
+	void SetNgayHetHan(MyDate ngayHetHan);
+	MyDate GetNgayHetHan();
+	void SetTinhTrang(bool tinhTrang);
+	bool GetTinhTrang();
 	void TaoPhieu();
 	void XuatPhieu();
 	void TraPhieu();
