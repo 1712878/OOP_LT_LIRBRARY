@@ -8,11 +8,19 @@ int main()
 {
 	ThuVien t;
 	t.DocFile();
-	t.XuatDSSach();
-	//t.ThemSach();
 	//t.XuatDSSach();
+	//t.ThemSach();
+	//t.XoaSach();
+	//t.SuaSach();
 	//t.TimKiemSach();
-	t.XoaSach();
+	//t.XuatDSSach();
+
+	t.XuatDSDocGia();
+	//t.ThemDocGia();
+	//t.XoaDocGia();
+	//t.SuaDocGia();
+	t.TimKiemDocGia();
+	//t.XuatDSDocGia();
 	system("pause");
 	return 0;
 }

@@ -25,6 +25,10 @@ public:
 	void XoaSach();
 	void SuaSach();
 	void TimKiemSach();
+	void ThemDocGia();
+	void XoaDocGia();
+	void SuaDocGia();
+	void TimKiemDocGia();
 	~ThuVien();
 };
 int GetToKen(string & token, string s, int &startPos);

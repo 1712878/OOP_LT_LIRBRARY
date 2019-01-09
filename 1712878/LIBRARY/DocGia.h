@@ -15,8 +15,9 @@ public:
 	void Nhap();
 	void Xuat();
 	void SetDuLieu(vector <string> DL);
-	void TimKiem(string s);
-	void Sua(string s);
+	string GetCMND();
+	void SuaDocGia();
+	bool TimKiem(string s);
 	~DocGia();
 };
 

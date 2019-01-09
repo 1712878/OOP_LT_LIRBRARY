@@ -9,7 +9,6 @@ void ThuVien::DocFile()
 	fstream fp;
 	string s;
 	
-
 	fp.open("..//FILE//Sach.csv", ios::in);
 	getline(fp, s);
 	while (!fp.eof())
@@ -52,8 +51,6 @@ void ThuVien::DocFile()
 		dsPhieuMuon.push_back(pm);
 	}
 	fp.close();
-
-
 }
 
 void ThuVien::XuatDSSach()
@@ -76,15 +73,15 @@ void ThuVien::XuatDSPhieuMuon()
 {
 }
 
-
+//1. Sach
 void ThuVien::ThemSach()
 {
 	int choice;
 	do
 	{
 		cout << "1. Sach Viet\n2. Sach ngoai\n";
-		cin >> choice;
 		cout << "Chon loai sach: ";
+		cin >> choice;
 	} while (choice < 1 || choice >2);
 
 	Sach* sach = NULL;
@@ -100,6 +97,7 @@ void ThuVien::ThemSach()
 	sach->Nhap();
 	dsSach.push_back(sach);
 }
+
 void ThuVien::XoaSach()
 {
 	int size = dsSach.size();
@@ -123,15 +121,38 @@ void ThuVien::XoaSach()
 		cout << "Khong tim thay ma sach nay!\n";
 	else
 	{
-		cout << "Da xoa sach co ma " << s << endl;
-		cout << "Dach sach Sach sau khi xoa: \n";
 		dsSach.erase(dsSach.begin() + flag);
-		XuatDSSach();
+		cout << "Da xoa sach co ma " << s << endl;
 	}
 }
+
 void ThuVien::SuaSach()
 {
+	int size = dsSach.size();
+	if (size < 1) {
+		cout << "Ban phai nhap danh sach sach truoc!\n";
+		return;
+	}
+	string s;
+	cout << "Nhap MaSach ban muon sua: ";
+	getline(cin >> ws, s);
+	int flag = -1;
+	for (int i = 0; i < size; i++)
+	{
+		if (dsSach[i]->GetMaSach() == s)
+		{
+			flag = i; // Ma sach la duy nhat nen chi can tim kiem duoc la thoat!
+			break;
+		}
+	}
+	if (flag == -1)
+		cout << "Khong tim thay ma sach nay!\n";
+	else
+	{
+		dsSach[flag]->SuaSach();
+	}
 }
+
 void ThuVien::TimKiemSach()
 {
 	int size = dsSach.size();
@@ -157,6 +178,96 @@ void ThuVien::TimKiemSach()
 	if (flag == 0)
 		cout << "Khong tim thay noi dung ban nhap!\n";
 }
+
+//2. Doc Gia
+void ThuVien::ThemDocGia()
+{
+	DocGia docGia;
+	docGia.Nhap();
+	dsDocGia.push_back(docGia);
+}
+
+void ThuVien::XoaDocGia()
+{
+	int size = dsDocGia.size();
+	if (size < 1) {
+		cout << "Ban phai nhap danh sach Doc Gia truoc!\n";
+		return;
+	}
+	string s;
+	cout << "Nhap CMND cua Doc Gia ban muon xoa: ";
+	getline(cin >> ws, s);
+	int flag = -1;
+	for (int i = 0; i < size; i++)
+	{
+		if (dsDocGia[i].GetCMND() == s)
+		{
+			flag = i; //CMND la duy nhat nen chi can tim kiem duoc la thoat!
+			break;
+		}
+	}
+	if (flag == -1)
+		cout << "Khong tim thay CMND nay!\n";
+	else
+	{
+		dsDocGia.erase(dsDocGia.begin() + flag);
+		cout << "Da xoa Doc Gia co CMND " << s << endl;
+	}
+}
+
+void ThuVien::SuaDocGia()
+{
+	int size = dsDocGia.size();
+	if (size < 1) {
+		cout << "Ban phai nhap danh sach Doc Gia truoc!\n";
+		return;
+	}
+	string s;
+	cout << "Nhap CMND cua Doc Gia ban muon sua: ";
+	getline(cin >> ws, s);
+	int flag = -1;
+	for (int i = 0; i < size; i++)
+	{
+		if (dsDocGia[i].GetCMND() == s)
+		{
+			flag = i; // CMND la duy nhat nen chi can tim kiem duoc la thoat!
+			break;
+		}
+	}
+	if (flag == -1)
+		cout << "Khong tim thay ma CMND nay!\n";
+	else
+	{
+		dsDocGia[flag].SuaDocGia();
+	}
+}
+
+void ThuVien::TimKiemDocGia()
+{
+	int size = dsDocGia.size();
+	if (size < 1) {
+		cout << "Ban phai nhap danh sach Doc Gia truoc!\n";
+		return;
+	}
+	string s;
+	cout << "Nhap CMND or HoTen or SDT or NgheNghiep or DiaChi: ";
+	getline(cin >> ws, s);
+	int flag = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (dsDocGia[i].TimKiem(s))
+		{
+			flag++;
+			if (flag == 1)
+				cout << left << setw(15) << "CMND" << setw(25) << "HO TEN" << setw(20) << "SDT"
+				<< setw(20) << "NGHE NGHIEP" << setw(10) << "DIA CHI" << endl;
+			dsDocGia[i].Xuat();
+		}
+	}
+	if (flag == 0)
+		cout << "Khong tim thay noi dung ban nhap!\n";
+}
+
 ThuVien::~ThuVien()
 {
 }

@@ -36,14 +36,62 @@ void DocGia::SetDuLieu(vector<string> DL)
 	this->DiaChi = DL[i++];
 }
 
-void DocGia::TimKiem(string s)
+string DocGia::GetCMND()
 {
+	return this->CMND;
 }
 
-void DocGia::Sua(string s)
+void DocGia::SuaDocGia()
 {
+	int choice;
+	do
+	{
+		cout << "1. Sua toan bo\n2. Sua CMND\n3. Sua Ho Ten\n";
+		cout << "4. Sua SDT\n5. Sua Nghe Nghiep\n6. Sua Dia Chi\n";
+		cout << "Chon: ";
+		cin >> choice;
+	} while (choice < 1 || choice >6);
+
+	string s;
+	switch (choice)
+	{
+	case 1:
+		cout << "Nhap lai thong tin: \n";
+		this->Nhap();
+		break;
+	case 2:
+		cout << "CMND moi: ";
+		getline(cin >> ws, s);
+		this->CMND = s;
+		break;
+	case 3:
+		cout << "Ho Ten moi: ";
+		getline(cin >> ws, s);
+		this->HoTen = s;
+		break;
+	case 4:
+		cout << "SDT moi: ";
+		getline(cin >> ws, s);
+		this->SDT = s;
+		break;
+	case 5:
+		cout << "Nghe Nghiep moi: ";
+		getline(cin >> ws, s);
+		this->NgheNghiep = s;
+		break;
+	case 6:
+		cout << "Dia Chi moi: ";
+		getline(cin >> ws, s);
+		this->DiaChi = s;
+		break;
+	}
 }
 
+bool DocGia::TimKiem(string s)
+{
+	return (this->CMND == s || this->HoTen == s || this->SDT == s
+		|| this->NgheNghiep == s || this->DiaChi == s);
+}
 
 DocGia::~DocGia()
 {

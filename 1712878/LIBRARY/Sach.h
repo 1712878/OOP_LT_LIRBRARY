@@ -15,7 +15,6 @@ public:
 	Sach();
 	virtual void Nhap();
 	virtual void Xuat();
-	string GetMaSach();
 	virtual void SetDuLieu(vector <string> DL)
 	{
 		int i = 0;
@@ -25,8 +24,9 @@ public:
 		this->NhaXuatBan = DL[i++];
 		this->Gia = atoi(DL[i].c_str());
 	}
-	bool TimKiem(string ma);
-	void Sua(string ma);
+	string GetMaSach();
+	virtual void SuaSach();
+	bool TimKiem(string s);
 	~Sach();
 };
 
