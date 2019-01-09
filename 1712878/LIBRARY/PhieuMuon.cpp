@@ -62,36 +62,6 @@ bool PhieuMuon::GetTinhTrang()
 	return this->TinhTrang;
 }
 
-void PhieuMuon::TaoPhieu()
-{
-	cout << "Nhap CMND: ";
-	getline(cin >> ws, this->CMND);
-	cout << "Nhap Ma Sach: ";
-	getline(cin >> ws, this->MaSach);
-	cout << "Nhap Ngay Muon: ";
-	cin >> NgayMuon;
-	NgayHetHan = NgayMuon + 7;
-	TinhTrang = false;
-}
-
-void PhieuMuon::XuatPhieu()
-{
-	DocGia a;
-	cout << "Thong tin nguoi muon: \n";
-	a.TimKiem(CMND);
-	a.Xuat();
-	Sach b; 
-	cout << "Thong tin sach muon: \n";
-	b.Xuat();
-	cout << "Ban duoc phep muon tu ngay: " << this->NgayMuon << "(" << this->NgayMuon.DayOfWeek() << "), den ngay: "
-		<< this->NgayHetHan << "( " << this->NgayHetHan.DayOfWeek() << ")\n";
-}
-
-void PhieuMuon::TraPhieu()
-{
-	TinhTrang = true;
-}
-
 void PhieuMuon::SetDuLieu(vector<string> DL)
 {
 	int i = 0;
@@ -100,6 +70,12 @@ void PhieuMuon::SetDuLieu(vector<string> DL)
 	this->NgayMuon = DL[i++];
 	this->NgayHetHan = DL[i++];
 	this->TinhTrang = stoi(DL[i++]);
+}
+
+string PhieuMuon::toString()
+{
+	return this->CMND + "," + this->MaSach + "," + this->NgayMuon.toString() + "," +
+		this->NgayHetHan.toString() + "," + to_string(this->TinhTrang) + "," + "\n";
 }
 
 PhieuMuon::~PhieuMuon()

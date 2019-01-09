@@ -14,13 +14,12 @@ void ThuVien::DocFile()
 	fstream fp;
 	string s;
 	
-	fp.open("..//FILE//Sach.csv", ios::in);
+	fp.open("FILE//Sach.csv", ios::in);
 	getline(fp, s);
-	while (!fp.eof())
+	while (getline(fp, s))
 	{
 		Sach* a;
 		vector <string> kq;
-		getline(fp, s);
 		TachToken(kq, s);
 		if (kq.size() == 5)
 			a = new SachViet;
@@ -31,26 +30,24 @@ void ThuVien::DocFile()
 	}
 	fp.close(); 
 
-	fp.open("..//FILE//DocGia.csv", ios::in);
+	fp.open("FILE//DocGia.csv", ios::in);
 	getline(fp, s);
 	DocGia docGia;
-	while (!fp.eof())
+	while (getline(fp, s))
 	{
 		vector <string> kq;
-		getline(fp, s);
 		TachToken(kq, s);
 		docGia.SetDuLieu(kq);
 		dsDocGia.push_back(docGia);
 	}
 	fp.close();
 
-	fp.open("..//FILE//PhieuMuon.csv", ios::in);
+	fp.open("FILE//PhieuMuon.csv", ios::in);
 	getline(fp, s);
 	PhieuMuon phieuMuon;
-	while (!fp.eof())
+	while (getline(fp, s))
 	{
 		vector <string> kq;
-		getline(fp, s);
 		TachToken(kq, s);
 		phieuMuon.SetDuLieu(kq);
 		dsPhieuMuon.push_back(phieuMuon);
@@ -346,28 +343,30 @@ void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 {
 	DocGia* docGia = TimDocGiaBangCMND(phieuMuon.GetCMND());
 	Sach* sach = TimSachBangMaSach(phieuMuon.GetMaSach());
-	cout << "-----------PHIEU MUON SACH--------------\n";
-	cout << "Thong tin Doc Gia:\n";
-	docGia->Xuat();
-	cout << "Thong tin sach:\n";
-	sach->Xuat();
+	cout << "\n-----------PHIEU MUON - TRA SACH--------------\n";
+	cout << "\n==> Thong tin Doc Gia <==\n";
+	cout << "CMND:     " << docGia->GetCMND() << endl;
+	cout << "Ho Ten:   " << docGia->GetHoTen() << endl;
+	cout << "SDT:      " << docGia->GetSDT() << endl;
+	cout << "\n==> Thong tin Sach    <==\n";
+	cout << "Ma Sach:  " << sach->GetMaSach() << endl;
+	cout << "Ten Sach: " << sach->GetTenSach() << endl;
+	cout << "Tac Gia:  " << sach->GetTacGia() << endl;
+	cout << "\n==> Thong muon - tra  <==\n";
 	cout << "Ngay muon:    " << phieuMuon.GetNgayMuon() << endl;
 	cout << "Ngay het han: " << phieuMuon.GetNgayHetHan() << endl;
 	cout << "Tinh trang:   ";
 	if (phieuMuon.GetTinhTrang() == false)
-	{
 		cout << "Dang muon\n";
-	}
 	else
 	{
 		cout << "Da tra ngay " << this->NgayHomNay << endl;
 		int nDay = this->NgayHomNay - phieuMuon.GetNgayHetHan();
-		cout << "Ghi chu: ";
+		cout << "*** Ghi chu: ";
 		if (nDay > 0)
 		{
 			int TienPhat = sach->GetTienPhat();
 			cout << "so tien phat " << nDay << "(ngay) * " << TienPhat << "/ngay = " << nDay * TienPhat << endl;
-
 		}
 		else
 			cout << "tra dung han\n";
@@ -388,6 +387,61 @@ void ThuVien::TraPhieu()
 			phieuMuon.SetTinhTrang(true);
 			XuatPhieu(phieuMuon);
 		}
+	}
+}
+
+void ThuVien::LietKeDSQuaHan()
+{
+	int n = 0;
+	for (int i = 0; i < dsPhieuMuon.size(); i++)
+	{
+		if (dsPhieuMuon[i].GetTinhTrang() == false)
+		{
+			int nDay = this->NgayHomNay - dsPhieuMuon[i].GetNgayHetHan();
+			if (nDay > 0)
+			{
+				n++;
+				DocGia* docGia = TimDocGiaBangCMND(dsPhieuMuon[i].GetCMND());
+				Sach* sach = TimSachBangMaSach(dsPhieuMuon[i].GetMaSach());
+				if (n == 1)
+				{
+					cout << left << setw(5) << "STT" << setw(25) << "HOTEN" << setw(15) << "SDT"
+						<< setw(25) << "TENSACH" << setw(23) << "TACGIA"
+						<< setw(5) << "NGAY" << setw(13) << "TIEN/NGAY" << setw(15) << "TONG" << endl;
+				}
+				cout << left << setw(5) << n << setw(25) << docGia->GetHoTen() << setw(15) << docGia->GetSDT()
+					<< setw(25) << sach->GetTenSach() << setw(25) << sach->GetTacGia()
+					<< setw(5) << nDay << setw(10) << sach->GetTienPhat() << setw(15) << nDay*sach->GetTienPhat() << endl;
+			}
+		}
+	}
+}
+
+void ThuVien::XuatFile()
+{
+	fstream fp;
+	{
+		fp.open("FILE//Sach.csv", ios::out);
+		fp << "MA SACH,TEN SACH,TAC GIA,NXB,GIA SACH,ISBN\n";
+		for (auto a : dsSach)
+			fp << a->toString();
+		fp.close();
+	}
+	
+	{
+		fp.open("FILE//DocGia.csv", ios::out);
+		fp << "CMND,Ho Ten,SDT,NGHE NGHIEP,DIA CHI\n";
+		for (auto a : dsDocGia)
+			fp << a.toString();
+		fp.close();
+	}
+
+	{
+		fp.open("FILE//PhieuMuon.csv", ios::out);
+		fp << "CMND,Ho Ten,SDT,NGHE NGHIEP,DIA CHI\n";
+		for (auto a : dsPhieuMuon)
+			fp << a.toString();
+		fp.close();
 	}
 }
 

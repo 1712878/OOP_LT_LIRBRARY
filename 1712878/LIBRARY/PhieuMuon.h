@@ -23,10 +23,8 @@ public:
 	MyDate GetNgayHetHan();
 	void SetTinhTrang(bool tinhTrang);
 	bool GetTinhTrang();
-	void TaoPhieu();
-	void XuatPhieu();
-	void TraPhieu();
 	void SetDuLieu(vector <string> DL);
+	string toString();
 	~PhieuMuon();
 };
 

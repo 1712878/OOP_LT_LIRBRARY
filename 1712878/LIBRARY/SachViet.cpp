@@ -11,6 +11,11 @@ void SachViet::Xuat()
 	cout << endl;
 }
 
+string SachViet::toString()
+{
+	return Sach::toString() + "\n";
+}
+
 
 SachViet::~SachViet()
 {

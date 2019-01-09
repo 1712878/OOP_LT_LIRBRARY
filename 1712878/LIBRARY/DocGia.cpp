@@ -93,6 +93,21 @@ bool DocGia::TimKiem(string s)
 		|| this->NgheNghiep == s || this->DiaChi == s);
 }
 
+string DocGia::GetHoTen()
+{
+	return this->HoTen;
+}
+
+string DocGia::GetSDT()
+{
+	return this->SDT;
+}
+
+string DocGia::toString()
+{
+	return this->CMND + "," + this->HoTen + "," + this->SDT + "," + this->NgheNghiep + "," + this->DiaChi + "\n";
+}
+
 DocGia::~DocGia()
 {
 }

@@ -28,6 +28,9 @@ public:
 	virtual void SuaSach();
 	bool TimKiem(string s);
 	virtual int GetTienPhat();
+	string GetTenSach();
+	string GetTacGia();
+	virtual string toString();
 	~Sach();
 };
 

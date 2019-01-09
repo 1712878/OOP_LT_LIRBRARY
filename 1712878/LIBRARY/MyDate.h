@@ -23,6 +23,7 @@ public:
 	int Distance();
 	int Distance(MyDate Date);
 	string DayOfWeek();
+	string toString();
 	friend istream& operator >> (istream& inDev, MyDate &Date)
 	{
 		char ch;

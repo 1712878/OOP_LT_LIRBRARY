@@ -6,7 +6,8 @@ class SachViet :public Sach
 {
 public:
 	SachViet();
-	void Xuat();
+	virtual void Xuat();
+	virtual string toString();
 	~SachViet();
 };
 

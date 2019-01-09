@@ -77,6 +77,11 @@ int SachNgoai::GetTienPhat()
 	return 20000;
 }
 
+string SachNgoai::toString()
+{
+	return Sach::toString() + "," + this->ISBN + "\n";
+}
+
 SachNgoai::SachNgoai()
 {
 }

@@ -41,6 +41,22 @@ int Sach::GetTienPhat()
 	return 10000;
 }
 
+string Sach::GetTenSach()
+{
+	return this->TenSach;
+}
+
+string Sach::GetTacGia()
+{
+	return this->TacGia;
+}
+
+string Sach::toString()
+{
+	return this->MaSach + "," + this->TenSach + "," +
+		this->TacGia + "," + this->NhaXuatBan + "," + to_string(this->Gia);
+}
+
 void Sach::SuaSach()
 {
 	int choice;

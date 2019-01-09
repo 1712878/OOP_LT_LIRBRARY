@@ -18,6 +18,9 @@ public:
 	string GetCMND();
 	void SuaDocGia();
 	bool TimKiem(string s);
+	string GetHoTen();
+	string GetSDT();
+	string toString();
 	~DocGia();
 };
 

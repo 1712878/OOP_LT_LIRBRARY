@@ -36,6 +36,8 @@ public:
 	void TaoPhieu();
 	void XuatPhieu(PhieuMuon phieuMuon);
 	void TraPhieu();
+	void LietKeDSQuaHan();
+	void XuatFile();
 	~ThuVien();
 };
 int GetToKen(string & token, string s, int &startPos);

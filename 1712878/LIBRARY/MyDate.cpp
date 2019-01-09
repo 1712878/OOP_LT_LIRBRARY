@@ -93,6 +93,11 @@ string MyDate::DayOfWeek()
 	return Day[n];
 }
 
+string MyDate::toString()
+{
+	return to_string(this->day) + "/" + to_string(this->month) + "/" + to_string(this->year);
+}
+
 int CheckYear(int year)
 {
 	if (year < MinYear || year > MaxYear)

@@ -12,6 +12,7 @@ public:
 	virtual void SetDuLieu(vector <string> DL);
 	virtual void SuaSach();
 	virtual int GetTienPhat();
+	virtual string toString();
 	SachNgoai();
 	~SachNgoai();
 };
