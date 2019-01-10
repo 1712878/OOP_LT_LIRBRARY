@@ -8,6 +8,8 @@
 #include "MyDate.h"
 #include <vector>
 #include <fstream>
+#include <iostream>
+using namespace std;
 
 class ThuVien
 {
@@ -42,11 +44,7 @@ public:
 
 	void LietKeDSQuaHan();
 	void XuatFile();
-
-	void XuLySach();
-	void XuLyDocGia();
-	void XuLyMuonTra();
-	void XuLyQuaHan();
+	
 };
 // 2 ham nay trong sach KTLT thay Thu
 int GetToKen(string & token, string s, int &startPos);

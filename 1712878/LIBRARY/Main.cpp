@@ -1,27 +1,24 @@
 #include "IO.h"
 #include "ThuVien.h"
-#include <iostream>
-using namespace std;
 
 int main()
 {
-	MyDate date("14/1/2019");
-	int Lenh;
+	MyDate date;
+	cout << "Khong tat ngang chuong trinh se mat du lieu!!\n";
+	cout << "Nhap vao ngay hom nay(dd/mm/yyyy): ";
+	cin >> date;
 	ThuVien tv;
 	tv.SetNgay(date);
 	tv.DocFile();
-	do
-	{
-		Menu();
-		Lenh = Chon();
-		XuLy(tv, Lenh);
-	} while (Lenh != 0);
+	
+	XuLy(tv);
 
 	string s;
 	cout << "Ban co muon luu lai cac thay doi (Y/N): ";
 	getline(cin >> ws, s);
-	if (s == "y" || s == "Y" || s == "YES" || s == "yes")
+	if (s == "Y" || s == "y" || s == "YES" || s == "yes")
 		tv.XuatFile();
+
 	system("pause");
 	return 0;
 }

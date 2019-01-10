@@ -53,9 +53,10 @@ void ThuVien::DocFile()
 
 void ThuVien::XuatDSSach()
 {
+	int size = dsSach.size();
+	cout << "Co " << size << " Sach\n";
 	cout << left << setw(5) << "STT" << setw(10) << "MA SACH" << setw(30) << "TEN SACH" << setw(20) << "TAC GIA"
 		<< setw(20) << "NHA XUAT BAN" << setw(10) << "GIA" << setw(10) << "ISBN" << endl;
-	int size = dsSach.size();
 	for (int i = 0; i < size; i++)
 	{
 		cout << setw(5) << i + 1;
@@ -65,9 +66,10 @@ void ThuVien::XuatDSSach()
 
 void ThuVien::XuatDSDocGia()
 {
+	int size = dsDocGia.size();
+	cout << "Co " << size << " Doc Gia\n";
 	cout << left << setw(5) << "STT" << setw(15) << "CMND" << setw(25) << "HO TEN" << setw(20) << "SDT"
 		<< setw(20) << "NGHE NGHIEP" << setw(10) << "DIA CHI" << endl;
-	int size = dsDocGia.size();
 	for (int i = 0; i < size; i++)
 	{
 		cout << setw(5) << i + 1;
@@ -77,9 +79,10 @@ void ThuVien::XuatDSDocGia()
 
 void ThuVien::XuatDSPhieuMuon()
 {
+	int size = dsPhieuMuon.size();
+	cout << "Co " << size << " Phieu Muon\n";
 	cout << left << setw(5) << "STT" << setw(15) << "CMND" << setw(15) << "MASACH" << "\t" << "NGAYMUON"
 		<< "\t" << "NGAYHH" << "\t\t" << "TINHTRANG" << endl;
-	int size = dsPhieuMuon.size();
 	for (int i = 0; i < size; i++)
 	{
 		cout << setw(5) << i + 1;
@@ -109,6 +112,7 @@ void ThuVien::ThemSach()
 		break;
 	}
 	sach->Nhap();
+	cout << "Them Sach thanh cong!\n";
 	dsSach.push_back(sach);
 }
 
@@ -213,7 +217,9 @@ Sach* ThuVien::TimKiemSach(string maSach)
 void ThuVien::ThemDocGia()
 {
 	DocGia docGia;
+	cout << "Nhap thong tin Doc Gia\n";
 	docGia.Nhap();
+	cout << "Them doc gia thanh cong\n";
 	dsDocGia.push_back(docGia);
 }
 
@@ -325,11 +331,13 @@ void ThuVien::TaoPhieu()
 		cout << "Nhap CMND: ";
 		cin >> s;
 		docGia = TimKiemDocGia(s);
-		if (docGia != NULL)
+		if (docGia != NULL || s== "-1")
 			break;
 		else
-			cout << "CMND chua dang ki doc gia, vui long nhap lai.";
-	} while (1);
+			cout << "CMND chua dang ki doc gia, vui long nhap lai. Hoac nhap -1 de thoat! ";
+	} while (true && s != "-1");
+	if (s == "-1")
+		return;
 	phieuMuon.SetCMND(s);
 
 	do
@@ -337,11 +345,13 @@ void ThuVien::TaoPhieu()
 		cout << "Nhap Ma Sach: ";
 		cin >> s;
 		sach = TimKiemSach(s);
-		if (sach != NULL)
+		if (sach != NULL || s == "-1")
 			break;
 		else
-			cout << "Ma Sach khong ton tai, vui long nhap lai.";
-	} while (1);
+			cout << "Ma Sach khong ton tai, vui long nhap lai. Hoac nhap -1 de thoat! ";
+	} while (true && s!= "-1");
+	if (s == "-1")
+		return;
 	phieuMuon.SetMaSach(s);
 	phieuMuon.SetNgayMuon(this->Ngay);
 	phieuMuon.SetNgayHetHan(this->Ngay + 7);
@@ -366,13 +376,14 @@ void ThuVien::TraPhieu()
 			XuatPhieu(phieuMuon);
 		}
 	}
+	cout << "Khong tim thay CMND nay muon sach. Vui long kiem tra lai!\n";
 }
 
 void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 {
 	DocGia* docGia = TimKiemDocGia(phieuMuon.GetCMND());
 	Sach* sach = TimKiemSach(phieuMuon.GetMaSach());
-	cout << "\n-----------PHIEU MUON - TRA SACH--------------\n";
+	cout << "\n---------PHIEU MUON - TRA SACH----------\n";
 	cout << "\n==> Thong tin Doc Gia <==\n";
 	cout << "CMND:     " << docGia->GetCMND() << endl;
 	cout << "Ho Ten:   " << docGia->GetHoTen() << endl;
@@ -419,6 +430,7 @@ void ThuVien::LietKeDSQuaHan()
 				Sach* sach = TimKiemSach(dsPhieuMuon[i].GetMaSach());
 				if (n == 1)
 				{
+					cout << "Danh sach qua han ngay " << this->Ngay << " la: \n";
 					cout << left << setw(5) << "STT" << setw(25) << "HOTEN" << setw(15) << "SDT"
 						<< setw(25) << "TENSACH" << setw(23) << "TACGIA"
 						<< setw(5) << "NGAY" << setw(13) << "TIEN/NGAY" << setw(15) << "TONG" << endl;
@@ -456,152 +468,6 @@ void ThuVien::XuatFile()
 		for (auto a : dsPhieuMuon)
 			fp << a.toString();
 		fp.close();
-	}
-}
-
-//5. XuLy
-void ThuVien::XuLySach()
-{
-	system("cls");
-	cout << "1. Xem DS Sach\n";
-	cout << "2. Them Sach\n";
-	cout << "3. Xoa Sach theo MaSach\n";
-	cout << "4. Sua Sach theo MaSach\n";
-	cout << "5. Tim Kiem Sach\n";
-	int chon;
-	do
-	{
-		cout << "Moi chon: ";
-		cin >> chon;
-	} while (chon < 1 || chon > 5);
-	switch (chon) {
-	case 1:
-		XuatDSSach();
-		break;
-	case 2:
-		ThemSach();
-		break;
-	case 3:
-		XoaSach();
-		break;
-	case 4:
-		SuaSach();
-		break;
-	case 5:
-		TimKiemSach();
-		break;
-	}
-	char ch;
-	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
-	cin >> ch;
-	if (ch == 'y' || ch =='Y')
-	{
-		XuLySach();
-	}
-}
-
-void ThuVien::XuLyDocGia()
-{
-	system("cls");
-	cout << "1. Xem DS Doc Gia\n";
-	cout << "2. Them Doc Gia\n";
-	cout << "3. Xoa Doc Gia theo CMND\n";
-	cout << "4. Sua Doc Gia theo CMND\n";
-	cout << "5. Tim Doc Gia\n";
-	int chon;
-	do
-	{
-		cout << "Moi chon: ";
-		cin >> chon;
-	} while (chon < 1 || chon > 4);
-	switch (chon) {
-	case 1:
-		XuatDSDocGia();
-		break;
-	case 2:
-		ThemDocGia();
-		break;
-	case 3:
-		XoaDocGia();
-		break;
-	case 4:
-		SuaDocGia();
-		break;
-	case 5:
-		TimKiemDocGia();
-		break;
-	}
-	char ch;
-	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
-	cin >> ch;
-	if (ch == 'y' || ch == 'Y')
-	{
-		XuLyDocGia();
-	}
-}
-
-void ThuVien::XuLyMuonTra()
-{
-	system("cls");
-	cout << "1. Xem DS Phieu Muon\n";
-	cout << "2. Tao Phieu Muon Sach\n";
-	cout << "3. Tra Phieu Muon Sach\n";
-	int chon;
-	do
-	{
-		cout << "Moi chon: ";
-		cin >> chon;
-	} while (chon < 1 || chon > 3);
-	switch (chon) {
-	case 1:
-		XuatDSPhieuMuon();
-		break;
-	case 2:
-		TaoPhieu();
-		break;
-	case 3:
-		TraPhieu();
-		break;
-	}
-	char ch;
-	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
-	cin >> ch;
-	if (ch == 'y' || ch == 'Y')
-	{
-		XuLyMuonTra();
-	}
-}
-
-void ThuVien::XuLyQuaHan()
-{
-	system("cls");
-	cout << "1. Xem DS Qua Han\n";
-	cout << "2. Thay Doi Ngay Can Xet\n";
-	int chon;
-	do
-	{
-		cout << "Moi chon: ";
-		cin >> chon;
-	} while (chon < 1 || chon > 2);
-	switch (chon) {
-	case 1:
-		cout << "Danh sach qua han ngay " << this->Ngay << " la: \n";
-		LietKeDSQuaHan();
-		break;
-	case 2:
-		MyDate date;
-		cout << "Nhap ngay can xet(dd/mm/yyyy): ";
-		cin >> date;
-		SetNgay(date);
-		cout << "Thay doi ngay thanh cong! ";
-		break;
-	}
-	char ch;
-	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
-	cin >> ch;
-	if (ch == 'y' || ch == 'Y')
-	{
-		XuLyQuaHan();
 	}
 }
 
