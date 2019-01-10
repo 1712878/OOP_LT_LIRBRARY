@@ -17,8 +17,6 @@ void XuLy(ThuVien &tv)
 
 	switch (chon)
 	{
-	case 0:
-		break;
 	case 1:
 		XuLySach(tv);
 		break;
@@ -37,7 +35,6 @@ void XuLy(ThuVien &tv)
 void XuLySach(ThuVien &tv)
 {
 	system("cls");
-	cout << "0. Back\n";
 	cout << "1. Xem DS Sach\n";
 	cout << "2. Them Sach\n";
 	cout << "3. Xoa Sach theo MaSach\n";
@@ -49,11 +46,8 @@ void XuLySach(ThuVien &tv)
 	{
 		cout << "Moi chon: ";
 		cin >> chon;
-	} while (chon < 0 || chon > 5);
+	} while (chon < 1 || chon > 5);
 	switch (chon) {
-	case 0:
-		XuLy(tv);
-		break;
 	case 1:
 		system("cls");
 		tv.XuatDSSach();
@@ -88,7 +82,6 @@ void XuLySach(ThuVien &tv)
 void XuLyDocGia(ThuVien &tv)
 {
 	system("cls");
-	cout << "0. Back\n";
 	cout << "1. Xem DS Doc Gia\n";
 	cout << "2. Them Doc Gia\n";
 	cout << "3. Xoa Doc Gia theo CMND\n";
@@ -100,11 +93,8 @@ void XuLyDocGia(ThuVien &tv)
 	{
 		cout << "Moi chon: ";
 		cin >> chon;
-	} while (chon < 0 || chon > 5);
+	} while (chon < 1 || chon > 5);
 	switch (chon) {
-	case 0:
-		XuLy(tv);
-		break; 
 	case 1:
 		system("cls");
 		tv.XuatDSDocGia();
@@ -139,7 +129,6 @@ void XuLyDocGia(ThuVien &tv)
 void XuLyMuonTra(ThuVien &tv)
 {
 	system("cls");
-	cout << "0. Back\n";
 	cout << "1. Xem Danh Sach Phieu Muon\n";
 	cout << "2. Tao Phieu Muon Sach Bang CMND Va MaSach\n";
 	cout << "3. Tra Phieu Muon Sach Bang CMND\n";
@@ -149,11 +138,8 @@ void XuLyMuonTra(ThuVien &tv)
 	{
 		cout << "Moi chon: ";
 		cin >> chon;
-	} while (chon < 0 || chon > 3);
+	} while (chon < 1 || chon > 3);
 	switch (chon) {
-	case 0:
-		XuLy(tv);
-		break;
 	case 1:
 		system("cls");
 		tv.XuatDSPhieuMuon();
@@ -180,7 +166,6 @@ void XuLyMuonTra(ThuVien &tv)
 void XuLyQuaHan(ThuVien &tv)
 {
 	system("cls");
-	cout << "0. Back\n";
 	cout << "1. Xem DS Qua Han\n";
 	cout << "2. Thay Doi Ngay Can Xet\n";
 
@@ -189,11 +174,8 @@ void XuLyQuaHan(ThuVien &tv)
 	{
 		cout << "Moi chon: ";
 		cin >> chon;
-	} while (chon < 0 || chon > 2);
+	} while (chon < 1 || chon > 2);
 	switch (chon) {
-	case 0:
-		XuLy(tv);
-		break;
 	case 1:
 		system("cls");
 		cout << "Ngay dang xet: " << tv.GetNgay() << endl;

@@ -11,10 +11,7 @@ int main()
 	tv.SetNgay(date);
 	tv.DocFile();
 
-	int lc = 0;
-	do {
-		lc = XuLy(tv);
-	} while (lc != 0);
+	XuLy(tv);
 
 	string s;
 	cout << "Ban co muon luu lai cac thay doi (Y/N): ";

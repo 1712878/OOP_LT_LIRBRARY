@@ -371,17 +371,20 @@ void ThuVien::TraPhieu()
 	string s;
 	cout << "Nhap CMND: ";
 	getline(cin >> ws, s);
-	PhieuMuon phieuMuon;
-	for (int i = 0; i < dsPhieuMuon.size(); i++)
+
+	bool flag = false;
+	int size = dsPhieuMuon.size();
+	for (int i = 0; i < size; i++)
 	{
 		if (dsPhieuMuon[i].GetCMND() == s)
 		{
-			phieuMuon = dsPhieuMuon[i];
-			phieuMuon.SetTinhTrang(true);
-			XuatPhieu(phieuMuon);
+			dsPhieuMuon[i].SetTinhTrang(true);
+			XuatPhieu(dsPhieuMuon[i]);
+			flag = true;
 		}
 	}
-	cout << "Khong tim thay CMND nay muon sach. Vui long kiem tra lai!\n";
+	if(!flag)
+		cout << "Khong tim thay CMND nay muon sach. Vui long kiem tra lai!\n";
 }
 
 void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
