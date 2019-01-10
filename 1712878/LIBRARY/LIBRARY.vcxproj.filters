@@ -39,6 +39,9 @@
     <ClCompile Include="DocGia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyDate.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DocGia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

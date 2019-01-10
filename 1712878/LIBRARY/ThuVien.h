@@ -12,13 +12,13 @@
 class ThuVien
 {
 private: 
-	MyDate NgayHomNay;
+	MyDate Ngay; // Ngay dang xet(hien tai) 
 	vector <Sach*> dsSach;
 	vector <DocGia> dsDocGia;
 	vector <PhieuMuon> dsPhieuMuon;
 public:
 
-	void SetNgayHomNay(MyDate date);
+	void SetNgay(MyDate date);
 	void DocFile();
 	void XuatDSSach();
 	void XuatDSDocGia();
@@ -42,6 +42,11 @@ public:
 
 	void LietKeDSQuaHan();
 	void XuatFile();
+
+	void XuLySach();
+	void XuLyDocGia();
+	void XuLyMuonTra();
+	void XuLyQuaHan();
 };
 // 2 ham nay trong sach KTLT thay Thu
 int GetToKen(string & token, string s, int &startPos);

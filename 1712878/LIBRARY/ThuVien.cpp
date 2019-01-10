@@ -1,8 +1,8 @@
 #include "ThuVien.h"
 
-void ThuVien::SetNgayHomNay(MyDate date)
+void ThuVien::SetNgay(MyDate date)
 {
-	this->NgayHomNay = date;
+	this->Ngay = date;
 }
 
 void ThuVien::DocFile()
@@ -343,8 +343,8 @@ void ThuVien::TaoPhieu()
 			cout << "Ma Sach khong ton tai, vui long nhap lai.";
 	} while (1);
 	phieuMuon.SetMaSach(s);
-	phieuMuon.SetNgayMuon(this->NgayHomNay);
-	phieuMuon.SetNgayHetHan(this->NgayHomNay + 7);
+	phieuMuon.SetNgayMuon(this->Ngay);
+	phieuMuon.SetNgayHetHan(this->Ngay + 7);
 	phieuMuon.SetTinhTrang(false);
 	dsPhieuMuon.push_back(phieuMuon);
 	cout << "\nTao phieu muon thanh cong!\n";
@@ -389,8 +389,8 @@ void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 		cout << "Dang muon\n";
 	else
 	{
-		cout << "Da tra ngay " << this->NgayHomNay << endl;
-		int nDay = this->NgayHomNay - phieuMuon.GetNgayHetHan();
+		cout << "Da tra ngay " << this->Ngay << endl;
+		int nDay = this->Ngay - phieuMuon.GetNgayHetHan();
 		cout << "*** Ghi chu: ";
 		if (nDay > 0)
 		{
@@ -411,7 +411,7 @@ void ThuVien::LietKeDSQuaHan()
 	{
 		if (dsPhieuMuon[i].GetTinhTrang() == false)
 		{
-			int nDay = this->NgayHomNay - dsPhieuMuon[i].GetNgayHetHan();
+			int nDay = this->Ngay - dsPhieuMuon[i].GetNgayHetHan();
 			if (nDay > 0)
 			{
 				n++;
@@ -456,6 +456,152 @@ void ThuVien::XuatFile()
 		for (auto a : dsPhieuMuon)
 			fp << a.toString();
 		fp.close();
+	}
+}
+
+//5. XuLy
+void ThuVien::XuLySach()
+{
+	system("cls");
+	cout << "1. Xem DS Sach\n";
+	cout << "2. Them Sach\n";
+	cout << "3. Xoa Sach theo MaSach\n";
+	cout << "4. Sua Sach theo MaSach\n";
+	cout << "5. Tim Kiem Sach\n";
+	int chon;
+	do
+	{
+		cout << "Moi chon: ";
+		cin >> chon;
+	} while (chon < 1 || chon > 5);
+	switch (chon) {
+	case 1:
+		XuatDSSach();
+		break;
+	case 2:
+		ThemSach();
+		break;
+	case 3:
+		XoaSach();
+		break;
+	case 4:
+		SuaSach();
+		break;
+	case 5:
+		TimKiemSach();
+		break;
+	}
+	char ch;
+	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
+	cin >> ch;
+	if (ch == 'y' || ch =='Y')
+	{
+		XuLySach();
+	}
+}
+
+void ThuVien::XuLyDocGia()
+{
+	system("cls");
+	cout << "1. Xem DS Doc Gia\n";
+	cout << "2. Them Doc Gia\n";
+	cout << "3. Xoa Doc Gia theo CMND\n";
+	cout << "4. Sua Doc Gia theo CMND\n";
+	cout << "5. Tim Doc Gia\n";
+	int chon;
+	do
+	{
+		cout << "Moi chon: ";
+		cin >> chon;
+	} while (chon < 1 || chon > 4);
+	switch (chon) {
+	case 1:
+		XuatDSDocGia();
+		break;
+	case 2:
+		ThemDocGia();
+		break;
+	case 3:
+		XoaDocGia();
+		break;
+	case 4:
+		SuaDocGia();
+		break;
+	case 5:
+		TimKiemDocGia();
+		break;
+	}
+	char ch;
+	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
+	cin >> ch;
+	if (ch == 'y' || ch == 'Y')
+	{
+		XuLyDocGia();
+	}
+}
+
+void ThuVien::XuLyMuonTra()
+{
+	system("cls");
+	cout << "1. Xem DS Phieu Muon\n";
+	cout << "2. Tao Phieu Muon Sach\n";
+	cout << "3. Tra Phieu Muon Sach\n";
+	int chon;
+	do
+	{
+		cout << "Moi chon: ";
+		cin >> chon;
+	} while (chon < 1 || chon > 3);
+	switch (chon) {
+	case 1:
+		XuatDSPhieuMuon();
+		break;
+	case 2:
+		TaoPhieu();
+		break;
+	case 3:
+		TraPhieu();
+		break;
+	}
+	char ch;
+	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
+	cin >> ch;
+	if (ch == 'y' || ch == 'Y')
+	{
+		XuLyMuonTra();
+	}
+}
+
+void ThuVien::XuLyQuaHan()
+{
+	system("cls");
+	cout << "1. Xem DS Qua Han\n";
+	cout << "2. Thay Doi Ngay Can Xet\n";
+	int chon;
+	do
+	{
+		cout << "Moi chon: ";
+		cin >> chon;
+	} while (chon < 1 || chon > 2);
+	switch (chon) {
+	case 1:
+		cout << "Danh sach qua han ngay " << this->Ngay << " la: \n";
+		LietKeDSQuaHan();
+		break;
+	case 2:
+		MyDate date;
+		cout << "Nhap ngay can xet(dd/mm/yyyy): ";
+		cin >> date;
+		SetNgay(date);
+		cout << "Thay doi ngay thanh cong! ";
+		break;
+	}
+	char ch;
+	cout << "Nhan phim 'y' de tiep tuc, phim bat ki de tro ve Menu chinh: ";
+	cin >> ch;
+	if (ch == 'y' || ch == 'Y')
+	{
+		XuLyQuaHan();
 	}
 }
 
