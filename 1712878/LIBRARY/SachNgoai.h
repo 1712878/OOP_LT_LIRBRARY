@@ -13,8 +13,6 @@ public:
 	virtual void SuaSach();
 	virtual int GetTienPhat();
 	virtual string toString();
-	SachNgoai();
-	~SachNgoai();
 };
 
 #endif // !__SACH_NGOAI_H__

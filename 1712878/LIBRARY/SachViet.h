@@ -5,10 +5,9 @@
 class SachViet :public Sach
 {
 public:
-	SachViet();
 	virtual void Xuat();
+	virtual int GetTienPhat();
 	virtual string toString();
-	~SachViet();
 };
 
 #endif // !__SACH_VIET_H__

@@ -1,15 +1,13 @@
 #include "PhieuMuon.h"
 
-
-
-PhieuMuon::PhieuMuon()
-{
-}
-
 void PhieuMuon::Xuat()
 {
-	cout << this->CMND << "\t" << this->MaSach << "\t" << this->NgayMuon
-		<< "\t" << this->NgayHetHan << "\t" << this->TinhTrang << endl;
+	cout << left << setw(15) << this->CMND << setw(15) << this->MaSach << "\t" << this->NgayMuon
+		<< "\t" << this->NgayHetHan << "\t"; 
+	if (this->TinhTrang)
+		cout << "Da tra\n";
+	else
+		cout << "Dang muon\n";
 }
 
 void PhieuMuon::SetCMND(string cmnd)
@@ -76,8 +74,4 @@ string PhieuMuon::toString()
 {
 	return this->CMND + "," + this->MaSach + "," + this->NgayMuon.toString() + "," +
 		this->NgayHetHan.toString() + "," + to_string(this->TinhTrang) + "," + "\n";
-}
-
-PhieuMuon::~PhieuMuon()
-{
 }

@@ -19,17 +19,19 @@ int main()
 	//t.TimKiemSach();
 	//t.XuatDSSach();
 
-	//t.XuatDSDocGia();
+	t.XuatDSDocGia();
 	//t.ThemDocGia();
 	//t.XoaDocGia();
 	//t.SuaDocGia();
 	//t.TimKiemDocGia();
 	//t.XuatDSDocGia();
-	//t.XuatDSPhieuMuon();
+
+	t.XuatDSPhieuMuon();
 	//t.TraPhieu();
 	//t.XuatDSPhieuMuon();
-	//t.LietKeDSQuaHan();
+	t.LietKeDSQuaHan();
 	t.XuatFile();
+
 	system("pause");
 	return 0;
 }

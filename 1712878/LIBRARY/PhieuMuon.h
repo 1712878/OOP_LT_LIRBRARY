@@ -11,7 +11,6 @@ private:
 	MyDate NgayMuon, NgayHetHan;
 	bool TinhTrang;
 public:
-	PhieuMuon();
 	void Xuat();
 	void SetCMND(string cmnd);
 	string GetCMND();
@@ -25,7 +24,6 @@ public:
 	bool GetTinhTrang();
 	void SetDuLieu(vector <string> DL);
 	string toString();
-	~PhieuMuon();
 };
 
 #endif // !_PHIEU_MUON_H__

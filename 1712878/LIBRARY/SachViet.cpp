@@ -1,22 +1,17 @@
 #include "SachViet.h"
 
-
-SachViet::SachViet()
-{
-}
-
 void SachViet::Xuat()
 {
 	Sach::Xuat();
 	cout << endl;
 }
 
+int SachViet::GetTienPhat()
+{
+	return pSachViet;
+}
+
 string SachViet::toString()
 {
 	return Sach::toString() + "\n";
-}
-
-
-SachViet::~SachViet()
-{
 }

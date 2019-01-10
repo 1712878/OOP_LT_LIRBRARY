@@ -1,9 +1,5 @@
 #include "ThuVien.h"
 
-ThuVien::ThuVien()
-{
-}
-
 void ThuVien::SetNgayHomNay(MyDate date)
 {
 	this->NgayHomNay = date;
@@ -57,24 +53,38 @@ void ThuVien::DocFile()
 
 void ThuVien::XuatDSSach()
 {
-	cout << left << setw(10) << "MA SACH" << setw(30) << "TEN SACH" << setw(20) << "TAC GIA"
+	cout << left << setw(5) << "STT" << setw(10) << "MA SACH" << setw(30) << "TEN SACH" << setw(20) << "TAC GIA"
 		<< setw(20) << "NHA XUAT BAN" << setw(10) << "GIA" << setw(10) << "ISBN" << endl;
-	for (int i = 0; i < dsSach.size(); i++)
+	int size = dsSach.size();
+	for (int i = 0; i < size; i++)
+	{
+		cout << setw(5) << i + 1;
 		dsSach[i]->Xuat();
+	}
 }
 
 void ThuVien::XuatDSDocGia()
 {
-	cout << left << setw(15) << "CMND" << setw(25) << "HO TEN" << setw(20) << "SDT"
+	cout << left << setw(5) << "STT" << setw(15) << "CMND" << setw(25) << "HO TEN" << setw(20) << "SDT"
 		<< setw(20) << "NGHE NGHIEP" << setw(10) << "DIA CHI" << endl;
-	for (int i = 0; i < dsDocGia.size(); i++)
+	int size = dsDocGia.size();
+	for (int i = 0; i < size; i++)
+	{
+		cout << setw(5) << i + 1;
 		dsDocGia[i].Xuat();
+	}
 }
 
 void ThuVien::XuatDSPhieuMuon()
 {
-	for (auto a : dsPhieuMuon)
-		a.Xuat();
+	cout << left << setw(5) << "STT" << setw(15) << "CMND" << setw(15) << "MASACH" << "\t" << "NGAYMUON"
+		<< "\t" << "NGAYHH" << "\t\t" << "TINHTRANG" << endl;
+	int size = dsPhieuMuon.size();
+	for (int i = 0; i < size; i++)
+	{
+		cout << setw(5) << i + 1;
+		dsPhieuMuon[i].Xuat();
+	}
 }
 
 //1. Sach
@@ -124,7 +134,7 @@ void ThuVien::XoaSach()
 	if (flag == -1)
 		cout << "Khong tim thay ma sach nay!\n";
 	else
-	{
+	{ 
 		dsSach.erase(dsSach.begin() + flag);
 		cout << "Da xoa sach co ma " << s << endl;
 	}
@@ -182,6 +192,22 @@ void ThuVien::TimKiemSach()
 	if (flag == 0)
 		cout << "Khong tim thay noi dung ban nhap!\n";
 }
+
+Sach* ThuVien::TimKiemSach(string maSach)
+{
+	Sach* sach = NULL;
+	int size = dsSach.size();
+	for (int i = 0; i < size; i++)
+	{
+		if (dsSach[i]->GetMaSach() == maSach)
+		{
+			sach = dsSach[i];
+			break;
+		}
+	}
+	return  sach;
+}
+
 
 //2. Doc Gia
 void ThuVien::ThemDocGia()
@@ -272,7 +298,7 @@ void ThuVien::TimKiemDocGia()
 		cout << "Khong tim thay noi dung ban nhap!\n";
 }
 
-DocGia* ThuVien::TimDocGiaBangCMND(string cmnd)
+DocGia* ThuVien::TimKiemDocGia(string cmnd)
 {
 	DocGia* docGia = NULL;
 	int size = dsDocGia.size();
@@ -287,21 +313,7 @@ DocGia* ThuVien::TimDocGiaBangCMND(string cmnd)
 	return  docGia;
 }
 
-Sach* ThuVien::TimSachBangMaSach(string maSach)
-{
-	Sach* sach = NULL;
-	int size = dsSach.size();
-	for (int i = 0; i < size; i++)
-	{
-		if (dsSach[i]->GetMaSach() == maSach)
-		{
-			sach = dsSach[i];
-			break;
-		}
-	}
-	return  sach;
-}
-
+//3. Phieu Muon
 void ThuVien::TaoPhieu()
 {
 	PhieuMuon phieuMuon;
@@ -312,7 +324,7 @@ void ThuVien::TaoPhieu()
 	{
 		cout << "Nhap CMND: ";
 		cin >> s;
-		docGia = TimDocGiaBangCMND(s);
+		docGia = TimKiemDocGia(s);
 		if (docGia != NULL)
 			break;
 		else
@@ -324,7 +336,7 @@ void ThuVien::TaoPhieu()
 	{
 		cout << "Nhap Ma Sach: ";
 		cin >> s;
-		sach = TimSachBangMaSach(s);
+		sach = TimKiemSach(s);
 		if (sach != NULL)
 			break;
 		else
@@ -339,10 +351,27 @@ void ThuVien::TaoPhieu()
 	XuatPhieu(phieuMuon);
 }
 
+void ThuVien::TraPhieu()
+{
+	string s;
+	cout << "Nhap CMND: ";
+	getline(cin >> ws, s);
+	PhieuMuon phieuMuon;
+	for (int i = 0; i < dsPhieuMuon.size(); i++)
+	{
+		if (dsPhieuMuon[i].GetCMND() == s)
+		{
+			phieuMuon = dsPhieuMuon[i];
+			phieuMuon.SetTinhTrang(true);
+			XuatPhieu(phieuMuon);
+		}
+	}
+}
+
 void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 {
-	DocGia* docGia = TimDocGiaBangCMND(phieuMuon.GetCMND());
-	Sach* sach = TimSachBangMaSach(phieuMuon.GetMaSach());
+	DocGia* docGia = TimKiemDocGia(phieuMuon.GetCMND());
+	Sach* sach = TimKiemSach(phieuMuon.GetMaSach());
 	cout << "\n-----------PHIEU MUON - TRA SACH--------------\n";
 	cout << "\n==> Thong tin Doc Gia <==\n";
 	cout << "CMND:     " << docGia->GetCMND() << endl;
@@ -373,27 +402,12 @@ void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 	}
 }
 
-void ThuVien::TraPhieu()
-{
-	string s;
-	cout << "Nhap CMND: ";
-	getline(cin >> ws, s);
-	PhieuMuon phieuMuon;
-	for (int i = 0; i < dsPhieuMuon.size(); i++)
-	{
-		if (dsPhieuMuon[i].GetCMND() == s)
-		{
-			phieuMuon = dsPhieuMuon[i];
-			phieuMuon.SetTinhTrang(true);
-			XuatPhieu(phieuMuon);
-		}
-	}
-}
-
+// 4. DS qua han
 void ThuVien::LietKeDSQuaHan()
 {
 	int n = 0;
-	for (int i = 0; i < dsPhieuMuon.size(); i++)
+	int size = dsPhieuMuon.size();
+	for (int i = 0; i < size; i++)
 	{
 		if (dsPhieuMuon[i].GetTinhTrang() == false)
 		{
@@ -401,8 +415,8 @@ void ThuVien::LietKeDSQuaHan()
 			if (nDay > 0)
 			{
 				n++;
-				DocGia* docGia = TimDocGiaBangCMND(dsPhieuMuon[i].GetCMND());
-				Sach* sach = TimSachBangMaSach(dsPhieuMuon[i].GetMaSach());
+				DocGia* docGia = TimKiemDocGia(dsPhieuMuon[i].GetCMND());
+				Sach* sach = TimKiemSach(dsPhieuMuon[i].GetMaSach());
 				if (n == 1)
 				{
 					cout << left << setw(5) << "STT" << setw(25) << "HOTEN" << setw(15) << "SDT"
@@ -430,7 +444,7 @@ void ThuVien::XuatFile()
 	
 	{
 		fp.open("FILE//DocGia.csv", ios::out);
-		fp << "CMND,Ho Ten,SDT,NGHE NGHIEP,DIA CHI\n";
+		fp << "CMND,HO TEN,SDT,NGHE NGHIEP,DIA CHI\n";
 		for (auto a : dsDocGia)
 			fp << a.toString();
 		fp.close();
@@ -438,16 +452,14 @@ void ThuVien::XuatFile()
 
 	{
 		fp.open("FILE//PhieuMuon.csv", ios::out);
-		fp << "CMND,Ho Ten,SDT,NGHE NGHIEP,DIA CHI\n";
+		fp << "CMND,MA SACH,NGAY MUON,NGAY HH,TINH TRANG\n";
 		for (auto a : dsPhieuMuon)
 			fp << a.toString();
 		fp.close();
 	}
 }
 
-ThuVien::~ThuVien()
-{
-}
+// 2 ham nay trong sach KTLT thay Thu
 int GetToKen(string & token, string s, int &startPos)
 {
 	string sep = ",";

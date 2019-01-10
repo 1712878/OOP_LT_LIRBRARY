@@ -11,7 +11,6 @@ class DocGia
 private:
 	string CMND, HoTen, SDT, NgheNghiep, DiaChi;
 public:
-	DocGia();
 	void Nhap();
 	void Xuat();
 	void SetDuLieu(vector <string> DL);
@@ -21,7 +20,6 @@ public:
 	string GetHoTen();
 	string GetSDT();
 	string toString();
-	~DocGia();
 };
 
 #endif // !__DOCGIA_H__

@@ -1,11 +1,5 @@
 #include "Sach.h"
 
-
-Sach::Sach()
-{
-
-}
-
 void Sach::Nhap()
 {
 	cout << "Ma Sach: ";
@@ -26,6 +20,16 @@ void Sach::Xuat()
 		<< setw(20) << this->NhaXuatBan << setw(10) << this->Gia;
 }
 
+void Sach::SetDuLieu(vector<string> DL)
+{
+	int i = 0;
+	this->MaSach = DL[i++];
+	this->TenSach = DL[i++];
+	this->TacGia = DL[i++];
+	this->NhaXuatBan = DL[i++];
+	this->Gia = stoi(DL[i]);
+}
+
 string Sach::GetMaSach()
 {
 	return this->MaSach;
@@ -34,11 +38,6 @@ string Sach::GetMaSach()
 bool Sach::TimKiem(string s)
 {
 	return (this->MaSach == s || this->TenSach == s|| this->TacGia == s|| this->NhaXuatBan == s);
-}
-
-int Sach::GetTienPhat()
-{
-	return 10000;
 }
 
 string Sach::GetTenSach()
@@ -102,8 +101,4 @@ void Sach::SuaSach()
 		this->Gia = gia;
 		break;
 	}	
-}
-
-Sach::~Sach()
-{
 }

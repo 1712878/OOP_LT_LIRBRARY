@@ -6,32 +6,25 @@
 #include <vector>
 #include <iomanip>
 using namespace std;
+#define pSachViet 10000
+#define pSachNgoai 20000
+
 class Sach
 {
 protected:
 	string MaSach, TenSach, TacGia, NhaXuatBan;
 	float Gia;
 public:
-	Sach();
 	virtual void Nhap();
 	virtual void Xuat();
-	virtual void SetDuLieu(vector <string> DL)
-	{
-		int i = 0;
-		this->MaSach = DL[i++];
-		this->TenSach = DL[i++];
-		this->TacGia = DL[i++];
-		this->NhaXuatBan = DL[i++];
-		this->Gia = atoi(DL[i].c_str());
-	}
+	virtual void SetDuLieu(vector <string> DL);
 	string GetMaSach();
 	virtual void SuaSach();
 	bool TimKiem(string s);
-	virtual int GetTienPhat();
+	virtual int GetTienPhat() = 0;
 	string GetTenSach();
 	string GetTacGia();
 	virtual string toString();
-	~Sach();
 };
 
 #endif // !__SACH_H__

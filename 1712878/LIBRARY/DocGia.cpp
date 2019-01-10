@@ -1,11 +1,5 @@
 #include "DocGia.h"
 
-
-
-DocGia::DocGia()
-{
-}
-
 void DocGia::Nhap()
 {
 	cout << "CMND: ";
@@ -106,8 +100,4 @@ string DocGia::GetSDT()
 string DocGia::toString()
 {
 	return this->CMND + "," + this->HoTen + "," + this->SDT + "," + this->NgheNghiep + "," + this->DiaChi + "\n";
-}
-
-DocGia::~DocGia()
-{
 }
