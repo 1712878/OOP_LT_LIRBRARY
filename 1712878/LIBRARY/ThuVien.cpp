@@ -5,6 +5,11 @@ void ThuVien::SetNgay(MyDate date)
 	this->Ngay = date;
 }
 
+MyDate ThuVien::GetNgay()
+{
+	return this->Ngay;
+}
+
 void ThuVien::DocFile()
 {
 	fstream fp;
@@ -414,7 +419,7 @@ void ThuVien::XuatPhieu(PhieuMuon phieuMuon)
 }
 
 // 4. DS qua han
-void ThuVien::LietKeDSQuaHan()
+bool ThuVien::LietKeDSQuaHan()
 {
 	int n = 0;
 	int size = dsPhieuMuon.size();
@@ -441,6 +446,7 @@ void ThuVien::LietKeDSQuaHan()
 			}
 		}
 	}
+	return n != 0;
 }
 
 void ThuVien::XuatFile()

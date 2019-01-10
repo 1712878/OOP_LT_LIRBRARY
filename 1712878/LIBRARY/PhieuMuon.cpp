@@ -73,5 +73,5 @@ void PhieuMuon::SetDuLieu(vector<string> DL)
 string PhieuMuon::toString()
 {
 	return this->CMND + "," + this->MaSach + "," + this->NgayMuon.toString() + "," +
-		this->NgayHetHan.toString() + "," + to_string(this->TinhTrang) + "," + "\n";
+		this->NgayHetHan.toString() + "," + to_string(this->TinhTrang) + "\n";
 }

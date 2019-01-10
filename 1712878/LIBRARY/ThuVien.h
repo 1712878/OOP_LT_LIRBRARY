@@ -21,6 +21,7 @@ private:
 public:
 
 	void SetNgay(MyDate date);
+	MyDate GetNgay();
 	void DocFile();
 	void XuatDSSach();
 	void XuatDSDocGia();
@@ -42,7 +43,7 @@ public:
 	void TraPhieu();
 	void XuatPhieu(PhieuMuon phieuMuon);
 
-	void LietKeDSQuaHan();
+	bool LietKeDSQuaHan();
 	void XuatFile();
 	
 };

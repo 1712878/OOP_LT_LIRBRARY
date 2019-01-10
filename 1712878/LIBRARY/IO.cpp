@@ -196,7 +196,9 @@ void XuLyQuaHan(ThuVien &tv)
 		break;
 	case 1:
 		system("cls");
-		tv.LietKeDSQuaHan();
+		cout << "Ngay dang xet: " << tv.GetNgay() << endl;
+		if (!tv.LietKeDSQuaHan())
+			cout << "Khong co Doc Gia nao muon qua han\n";
 		break;
 	case 2:
 		system("cls");
